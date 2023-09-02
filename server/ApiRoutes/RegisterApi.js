@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../DataBase/db')
- const bcrypt = require('bcrypt');
-//  const jwt = require('jsonwebtoken');
- const salt = 10;
+const bcrypt = require('bcrypt');
+const salt = 10;
 
 router.post('/register', async (req,res) => {
     const { name, email, password} = req.body;
@@ -14,7 +13,7 @@ router.post('/register', async (req,res) => {
       const newValue = {
         name,email,hashedPassword
       };
-  // <------ hashPassword animal error ka ganina kay newValue.password raka
+      
       db.query('INSERT INTO accounts (name, email, password) VALUES (?, ?, ?)',
       [newValue.name, newValue.email, newValue.hashedPassword],
       (err, result) => {
