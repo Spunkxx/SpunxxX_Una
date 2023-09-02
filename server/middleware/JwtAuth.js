@@ -1,3 +1,9 @@
+const express = require('express');
+const jwt = require('jsonwebtoken');
+
+
+const router = express.Router();
+
 const verifyToken = (req, res, next) => {
     const token = req.header('Authorization');
   
@@ -15,12 +21,5 @@ const verifyToken = (req, res, next) => {
     });
   };
   
-  // Example usage:
-  router.get('/protected-route', verifyToken, (req, res) => {
-    // This route is protected and requires a valid token
-    // The userId can be accessed as req.userId
-    res.json({ message: 'This is a protected route.' });
-  });
-  
 
-  
+ module.exports = router;
