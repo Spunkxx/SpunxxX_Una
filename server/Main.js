@@ -4,6 +4,7 @@ const env = require('dotenv');
 // const mysql = require('mysql');
 // const jwt = require('jsonwebtoken');
 const cookParser = require('cookie-parser');
+const RefreshTok = require('./middleware/RefreshTok');
 // const bcrypt = require('bcrypt');
 // const salt = 10;
 const app = express();
@@ -22,11 +23,14 @@ env.config();
 
 //diri nimo gi import ang routes/endpoints nimo
 
-const db = require('./DataBase/db');
+// const db = require('./DataBase/db');
+app.use('/', RefreshTok);
 const RegisterApi = require('./ApiRoutes/RegisterApi');
 app.use('/',RegisterApi);
 const LoginApi = require('./ApiRoutes/LoginApi');
 app.use('/',LoginApi);
+const Logout = require('./ApiRoutes/Logout');
+app.use('/',Logout);
 
 
 

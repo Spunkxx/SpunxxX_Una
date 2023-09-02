@@ -1,13 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"; 
+import { useState } from "react";
 
 const UserProfile = () => {
-
-  // ilisdi ni og get method para sa user Info puhon2
-  
+  const [error, setError] = useState("");
   const user = {
     name: "John Doe",
     email: "john.doe@example.com",
+  };
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    
+      await axios.post("http://localhost:5180/logout")
+      
+      
+      .then((response) => {
+        console.log(response?.data);
+        navigate("/");
+      })
+      .catch((err) => {
+        setError("Logout Failed")
+        console.log(err)
+      })
 
+      // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    
   };
 
   return (
@@ -28,12 +45,18 @@ const UserProfile = () => {
           </label>
           <p className="text-gray-600">{user.email}</p>
         </div>
-        {/* Add more user-related information as needed */}
+        <button
+          onClick={handleLogout}
+          className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-lg focus:outline-none focus:ring focus:border-red-500"
+        >
+          Logout
+        </button>
         <Link to="/">
           <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
             Edit Profile
           </button>
         </Link>
+        {error && <p className="mt-2 text-red-500">{error}</p>}
       </div>
     </div>
   );

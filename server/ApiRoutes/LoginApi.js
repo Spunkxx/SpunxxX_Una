@@ -4,6 +4,8 @@ const db = require("../DataBase/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const checkAuth = require('../middleware/JwtAuth');
+
 
 // router.post('/login', async (req, res) => {
 //   try {
@@ -41,7 +43,7 @@ const cookieParser = require("cookie-parser");
 router.use(express.json());
 router.use(cookieParser());
 
-router.post("/login", (req, res) => {
+router.post("/login", checkAuth, (req, res) => {
   const { email, password } = req.body;
 
   db.query(
@@ -74,7 +76,7 @@ router.post("/login", (req, res) => {
 
         if (isMatch) {
           // jwt auth
-          const payload = { email };
+          const payload = { userId: user.id, email: user.email  };
           const token = jwt.sign(payload, process.env.SECRET_KEY, {
             expiresIn: "3h",
           });
@@ -84,7 +86,7 @@ router.post("/login", (req, res) => {
             maxAge: 3 * 60 * 60 * 1000,
           });
 
-          // console.log("Cookie:", token);
+          console.log("Cookie:", token);
           
           res.status(200).json({ message: "Login successful" });
           return console.log("Success");
