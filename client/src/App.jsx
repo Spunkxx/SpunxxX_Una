@@ -2,20 +2,27 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // ay
 import Register from './components/Auths/Register';
 import Login from './components/Auths/Login';
 import UserProfile from './components/Pages/UserProfile';
-import Home from './components/Pages/Home';
+import Navbar from './components/Pages/Navbar';
+import Offers from './components/Pages/SectionPages/Offers';
+// import Home from './components/Pages/Home';
 
 
 function App() {
   return (
     <Router>
+      <div className="bg-white dark:bg-gray-900">
       <Routes>
   
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Navbar />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/offers" element={<Offers />} />
+        
         <Route path="/profile" element={<UserProfile />} />
         
       </Routes>
+      </div>
     </Router>
   );
 }
