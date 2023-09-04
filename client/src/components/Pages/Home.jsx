@@ -1,10 +1,11 @@
 
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Home = () => {
   return (
     <div className="bg-gray-100 min-h-screen p-4">
-      {/* Navbar */}
+      <Navbar/>
       <nav className="bg-blue-500 p-4 mb-4">
         <ul className="flex justify-end space-x-4">
           <li>
