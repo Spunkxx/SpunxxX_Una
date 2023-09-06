@@ -27,7 +27,7 @@ const Navbar = () => {
               Login
             </button>
           </Link>
-          <Link to="/register">
+          <Link to="/signup">
             <button
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-10 py-2 text-center mr-3 md:mr-0 dark:bg-blue-900 dark:hover:bg-green-700  dark:focus:ring-blue-800"

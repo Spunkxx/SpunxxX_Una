@@ -6,21 +6,6 @@ const Home = () => {
   return (
     <div className="bg-gray-100 min-h-screen p-4">
       <Navbar/>
-      <nav className="bg-blue-500 p-4 mb-4">
-        <ul className="flex justify-end space-x-4">
-          <li>
-            <Link to="/login" className="text-white hover:text-gray-200">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/register" className="text-white hover:text-gray-200">
-              Register
-            </Link>
-          </li>
-        </ul>
-      </nav>
-
       {/* Content */}
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h1 className="text-4xl font-semibold mb-4">Welcome to My Website</h1>
