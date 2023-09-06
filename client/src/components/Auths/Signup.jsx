@@ -3,34 +3,32 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { toast } from "react-hot-toast";
 
-const Register = () => {
-  const [name, setName] = useState("");
+const Signup = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [pass, setPass] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // const [error, setError] = useState("");
+//   const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (pass !== confirmPassword) {
       toast.error("Passwords don't match");
       return;
     }
 
     try {
       const response = await axios.post("http://localhost:5180/register", {
-        name,
+        
         email,
-        password,
+        pass,
       });
 
       if (response.status === 200) {
         toast.success("Registered Successfully");
-        
         navigate("/login"); 
       }
     } catch (error) {
@@ -49,22 +47,6 @@ const Register = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Sign Up</h2>
         <form onSubmit={handleRegister}>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="username"
-            >
-              Username:
-            </label>
-            <input
-              className="w-full px-3 py-2 border rounded-lg shadow-sm text-gray-600 placeholder-gray-400 focus:outline-none focus:ring focus:border-blue-500"
-              type="text"
-              id="username"
-              placeholder="Enter your username"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -94,8 +76,8 @@ const Register = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
               />
               <button
                 type="button"
@@ -141,4 +123,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Signup;
