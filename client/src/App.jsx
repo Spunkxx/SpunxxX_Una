@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <div className="bg-white dark:bg-gray-900">
-      <Toaster position='bottom-center'/>
+      <Toaster position='top-center'/>
       <Routes>
   
         <Route path="/" element={<Navbar />} />
