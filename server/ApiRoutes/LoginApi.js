@@ -7,39 +7,6 @@ const cookieParser = require("cookie-parser");
 const checkAuth = require('../middleware/JwtAuth');
 
 
-// router.post('/login', async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     const sql_select = "SELECT * FROM accounts WHERE email = ?";
-
-// query di mo basa, not defined daw napod!!!
-//     db.query(sql_select, [email], async (err, rows) => {
-//       if (err) {
-//         console.error(err);
-//         throw new Error("Internal error, please try again.");
-//       } else if (rows.length === 0) {
-//         res.status(401).json({ error: "Incorrect Email or Password" });
-//       } else {
-//         const user = rows[0];
-//         bcrypt.compare(password, user.Password, async (err, same) => {
-//           if (err) {
-//             throw new Error("Internal error, please try again.");
-//           } else if (!same) {
-//             res.status(401).json({ error: "Incorrect Credentials" });
-//           } else {
-//             const payload = { email };
-//             const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "1d" });
-//             res.cookie('token', token, { httpOnly: true }).sendStatus(200);
-//           }
-//         });
-//       }
-//     });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-
 router.use(express.json());
 router.use(cookieParser());
 

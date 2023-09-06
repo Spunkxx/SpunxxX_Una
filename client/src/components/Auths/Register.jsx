@@ -6,7 +6,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
@@ -15,10 +15,10 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    // if (password !== confirmPassword) {
-    //   setError("Passwords don't match");
-    //   return;
-    // }
+    if (password !== confirmPassword) {
+      setError("Passwords don't match");
+      return;
+    }
 
     try {
       const response = await axios.post("http://localhost:5180/register", {
@@ -105,7 +105,7 @@ const Register = () => {
               </button>
             </div>
           </div>
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="confirmPassword"
@@ -120,7 +120,7 @@ const Register = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-          </div> */}
+          </div>
           <button
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
             type="submit"
