@@ -8,7 +8,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  // axios.defaults.withCredentials = false;
+ 
 
   const handleLogin = async (e) => {
     e.preventDefault();
