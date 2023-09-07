@@ -7,6 +7,8 @@ const app = express();
 app.use(express.json());
 const checkAuth = require("./middleware/JwtAuth");
 
+
+
 // ambot sakto baka cors ka animal
 
 app.use(
@@ -18,6 +20,9 @@ app.use(
 env.config();
 
 //diri nimo gi import ang routes/endpoints nimo
+
+
+
 
 app.use("/", RefreshTok);
 const RegisterApi = require("./ApiRoutes/RegisterApi");

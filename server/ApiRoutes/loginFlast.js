@@ -1,19 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const dbFlast = require("../DataBase/db");
+const db = require("../DataBase/db");
+// const db2 = require('./DataBase/db')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const checkAuth = require("../middleware/JwtAuth");
 
+
+
 router.use(express.json());
 router.use(cookieParser());
 
-router.post("/LoginAuth", async (req, res) => {
+router.post("/LoginAuth",async (req, res) => {
   const { email, pass } = req.body;
 
   const sql_slc = "SELECT * FROM  accounts WHERE email = ?";
-  dbFlast.query(sql_slc, email, (err, results) => {
+  db.query(sql_slc, email, (err, results) => {
     if (err) {
       console.error("Error Login", err);
       return res.status(500).json({ msg: "Error during login" });
@@ -41,7 +44,7 @@ router.post("/LoginAuth", async (req, res) => {
           maxAge: 3 * 60 * 60 * 1000,
         });
 
-        // console.log("Cookie:", token);
+        console.log("Cookie:", token);
 
         res.status(200).json({ message: "Login successful" });
         return console.log("Success");

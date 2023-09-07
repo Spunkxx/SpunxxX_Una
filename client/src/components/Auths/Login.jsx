@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import {toast} from 'react-hot-toast';
+import { toast } from "react-hot-toast";
+import Loader from "../../assests/Loader";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,29 +16,25 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
-       await axios
-        .post("http://localhost:5180/loginAuth", {
-          email,
-          // password,
-          pass,
-        })
-        .then((response) => {
-          console.log(response?.data);
-          navigate("/profile");
-          toast.success("Login successful!")
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("Invalid Email or Password");
-          
-        })
-        .finally(() => {
-          setLoading(false); 
-        });
 
- 
-  
+    await axios
+      .post("http://localhost:5180/loginAuth", {
+        email,
+        // password,
+        pass,
+      })
+      .then((response) => {
+        console.log(response?.data);
+        navigate("/profile");
+        toast.success("Login successful!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Invalid Email or Password");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -45,13 +42,11 @@ const Login = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Login</h2>
         {loading ? ( // Render loading indicator if loading state is true
-          <div className="text-center mb-4">
-            <p>Loading...</p>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <Loader />
           </div>
         ) : (
-          <form onSubmit={handleLogin}>
-            {/* ... Your form fields ... */}
-          </form>
+          <form onSubmit={handleLogin}>{/* ... Your form fields ... */}</form>
         )}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
