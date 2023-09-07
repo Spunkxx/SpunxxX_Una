@@ -5,7 +5,8 @@ import {toast} from 'react-hot-toast';
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
+  const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   // const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -16,9 +17,10 @@ const Login = () => {
 
     
        await axios
-        .post("http://localhost:5180/login", {
+        .post("http://localhost:5180/loginAuth", {
           email,
-          password,
+          // password,
+          pass,
         })
         .then((response) => {
           console.log(response?.data);
@@ -27,7 +29,7 @@ const Login = () => {
         })
         .catch((err) => {
           console.log(err);
-          toast.error("Login failed. Please check your email and password.");
+          toast.error("Invalid Email or Password");
           
         });
 
@@ -69,8 +71,10 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
+                // value={password}
+                // onChange={(e) => setPassword(e.target.value)}
               />
               <button
                 type="button"
@@ -89,7 +93,7 @@ const Login = () => {
           </button>
           <p className="mt-4 text-sm text-gray-600">
             {"Don't"} have an account?{" "}
-            <Link to="/register" className="text-blue-600 hover:underline">
+            <Link to="/signup" className="text-blue-600 hover:underline">
               Register here
             </Link>
           </p>

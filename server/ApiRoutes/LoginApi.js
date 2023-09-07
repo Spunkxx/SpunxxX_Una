@@ -4,8 +4,7 @@ const db = require("../DataBase/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const checkAuth = require('../middleware/JwtAuth');
-
+const checkAuth = require("../middleware/JwtAuth");
 
 router.use(express.json());
 router.use(cookieParser());
@@ -27,13 +26,14 @@ router.post("/login", checkAuth, (req, res) => {
       }
 
       const user = results[0];
-      console.log("Database Query Results:", results);
 
-      console.log('user.Password:', user.password);
-      console.log('Password:', password);
+      // console.log("Database Query Results:", results);
+      // console.log('user.Password:', user.password);
+      // console.log('Password:', password);
 
-      const hashedPassword = await bcrypt.hash(password, 10);
-      console.log(hashedPassword)
+      // const hashedPassword = await bcrypt.hash(password, 10);
+
+      // console.log(hashedPassword);
 
       bcrypt.compare(password, user.password, (compareErr, isMatch) => {
         if (compareErr) {
@@ -43,7 +43,7 @@ router.post("/login", checkAuth, (req, res) => {
 
         if (isMatch) {
           // jwt auth
-          const payload = { userId: user.id, email: user.email  };
+          const payload = { userId: user.id, email: user.email };
           const token = jwt.sign(payload, process.env.SECRET_KEY, {
             expiresIn: "3h",
           });
@@ -53,8 +53,8 @@ router.post("/login", checkAuth, (req, res) => {
             maxAge: 3 * 60 * 60 * 1000,
           });
 
-          console.log("Cookie:", token);
-          
+          // console.log("Cookie:", token);
+
           res.status(200).json({ message: "Login successful" });
           return console.log("Success");
         } else {
