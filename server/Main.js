@@ -22,13 +22,16 @@ env.config();
 app.use("/", RefreshTok);
 const RegisterApi = require("./ApiRoutes/RegisterApi");
 app.use("/", RegisterApi);
-const LoginApi = require("./ApiRoutes/LoginApi");
-app.use("/", LoginApi);
+// const LoginApi = require("./ApiRoutes/LoginApi");
+// app.use("/", LoginApi);
 const Logout = require("./ApiRoutes/Logout");
 app.use("/", Logout);
 const UserProf = require("./ApiGet/UserProf");
 app.use("/", UserProf);
 app.use("/", checkAuth);
+
+const LoginFlast = require("./ApiRoutes/loginFlast");
+app.use("/", LoginFlast);
 
 const PORT = process.env.PORT_API || 5181;
 app.listen(PORT, () => {
