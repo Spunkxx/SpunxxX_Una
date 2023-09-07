@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import {toast} from 'react-hot-toast';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const navigate = useNavigate();
  
 
@@ -22,10 +23,12 @@ const Login = () => {
         .then((response) => {
           console.log(response?.data);
           navigate("/profile");
+          toast.success("Login successful!")
         })
         .catch((err) => {
-          setError("Login failed. Please check your email and password.");
           console.log(err);
+          toast.error("Login failed. Please check your email and password.");
+          
         });
 
  
@@ -86,12 +89,12 @@ const Login = () => {
           </button>
           <p className="mt-4 text-sm text-gray-600">
             {"Don't"} have an account?{" "}
-            <Link to="/signup" className="text-blue-600 hover:underline">
+            <Link to="/register" className="text-blue-600 hover:underline">
               Register here
             </Link>
           </p>
         </form>
-        {error && <p className="mt-2 text-red-500">{error}</p>}
+        {/* {error && <p className="mt-2 text-red-500">{error}</p>} */}
       </div>
     </div>
   );

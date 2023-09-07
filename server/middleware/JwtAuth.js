@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-const verifyToken = (req, res, next) => {
+const checkAuth = (req, res, next) => {
     const token = req.header('Authorization');
   
     if (!token) {
