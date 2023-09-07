@@ -1,27 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { toast } from "react-hot-toast";
 
 const UserProfile = () => {
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get("http://localhost:5180/user");
-      setUserData(response.data); // Make sure the API returns an object with 'name' and 'email' properties.
-      toast.success("Data is on Display");
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to fetch user data");
-    }
-  };
+  // const fetchUserData = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:5180/user");
+  //     setUserData(response.data); // Make sure the API returns an object with 'name' and 'email' properties.
+  //     toast.success("Data is on Display");
+  //   } catch (err) {
+  //     console.error(err);
+  //     toast.error("Failed to fetch user data");
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+  // useEffect(() => {
+  //   fetchUserData();
+  // }, []);
 
   const handleLogout = async () => {
     try {
@@ -30,7 +30,7 @@ const UserProfile = () => {
       navigate("/");
     } catch (err) {
       setError("Logout Failed");
-      console.error(err);
+      toast.error(err);
     }
   };
 
@@ -44,13 +44,13 @@ const UserProfile = () => {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Name:
           </label>
-          <p className="text-gray-600">{userData.name}</p>
+          {/* <p className="text-gray-600">{userData.name}</p> */}
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Email:
           </label>
-          <p className="text-gray-600">{userData.email}</p>
+          {/* <p className="text-gray-600">{userData.email}</p> */}
         </div>
         <button
           onClick={handleLogout}
