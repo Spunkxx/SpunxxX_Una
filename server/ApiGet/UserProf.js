@@ -1,11 +1,11 @@
 const express = require('express')
-const user = express.Router();
+const router = express.Router();
 const jwt = require('jsonwebtoken')
-const checkAuth = require('../middleware/JwtAuth');
+const JwtAuth = require('../middleware/JwtAuth');
 
 
 
-user.get('/user-info', checkAuth, async (req,res) =>{
+router.get('/user', JwtAuth, async (req,res) =>{
     try{
         const userId = req.userData.userId;
 
@@ -13,8 +13,8 @@ user.get('/user-info', checkAuth, async (req,res) =>{
 
         if(user) {
             const userInfo = {
-                name: user.name,
-                email: user.email,
+                name: userData.name,
+                email: userData.email,
             }
             res.status(200).json(userInfo)
         }else{
@@ -27,4 +27,4 @@ user.get('/user-info', checkAuth, async (req,res) =>{
 })
 
 
-module.exports = user;
+module.exports = router;
