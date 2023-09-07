@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require ("cors" );
+const cors = require ("cors");
 const env = require('dotenv');
 const cookParser = require('cookie-parser');
 const RefreshTok = require('./middleware/RefreshTok');
@@ -11,7 +11,7 @@ app.use(express.json());
 // ambot sakto baka cors ka animal 
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173"],
   credentials: false,
 }));
 env.config();
