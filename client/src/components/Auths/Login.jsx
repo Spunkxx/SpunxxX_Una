@@ -10,11 +10,11 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   // const [error, setError] = useState("");
   const navigate = useNavigate();
- 
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     
        await axios
         .post("http://localhost:5180/loginAuth", {
@@ -31,6 +31,9 @@ const Login = () => {
           console.log(err);
           toast.error("Invalid Email or Password");
           
+        })
+        .finally(() => {
+          setLoading(false); 
         });
 
  
@@ -41,6 +44,15 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Login</h2>
+        {loading ? ( // Render loading indicator if loading state is true
+          <div className="text-center mb-4">
+            <p>Loading...</p>
+          </div>
+        ) : (
+          <form onSubmit={handleLogin}>
+            {/* ... Your form fields ... */}
+          </form>
+        )}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../DataBase/db");
+const dbFlast = require("../DataBase/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -13,7 +13,7 @@ router.post("/LoginAuth", async (req, res) => {
   const { email, pass } = req.body;
 
   const sql_slc = "SELECT * FROM  accounts WHERE email = ?";
-  db.query(sql_slc, email, (err, results) => {
+  dbFlast.query(sql_slc, email, (err, results) => {
     if (err) {
       console.error("Error Login", err);
       return res.status(500).json({ msg: "Error during login" });
