@@ -29,11 +29,11 @@ router.post("/login", checkAuth, (req, res) => {
       const user = results[0];
       console.log("Database Query Results:", results);
 
-      // console.log('user.Password:', user.password);
-      // console.log('Password:', password);
+      console.log('user.Password:', user.password);
+      console.log('Password:', password);
 
-      // const hashedPassword = await bcrypt.hash(password, 10);
-      // console.log(hashedPassword)
+      const hashedPassword = await bcrypt.hash(password, 10);
+      console.log(hashedPassword)
 
       bcrypt.compare(password, user.password, (compareErr, isMatch) => {
         if (compareErr) {
