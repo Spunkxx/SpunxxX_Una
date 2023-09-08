@@ -1,6 +1,9 @@
 const mysql = require('mysql')
 const dotenv = require('dotenv')
 dotenv.config();
+const express = require('express');
+const router = express.Router();
+
 
 // Flast
 const db = mysql.createConnection({
@@ -18,23 +21,9 @@ const db = mysql.createConnection({
   });
   
 
-//  Una
-  // const db2 = mysql.createConnection({
-  //   port: process.env.PORT_UNA,
-  //   host: process.env.HOST_UNA,
-  //   user: process.env.USER_UNA,
-  //   password: process.env.PASSWORD_UNA,
-  //   database: process.env.DATABASE_UNA,
-  // });
-  // db2.connect((err) => {
-  //     if(err) {
-  //         throw err;
-  //     }
-  //     console.log('Conneted to the UNA')
-  // });
+
   
 
-// module.exports = {db,dbUna};
 module.exports = db;
 
 

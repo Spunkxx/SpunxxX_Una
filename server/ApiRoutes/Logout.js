@@ -8,8 +8,7 @@ router.post("/logout", (req, res) => {
 
   console.log("Cookies after logout:", req.cookies);
 
-
-  res.status(200).json({ message: "Logout successful and Cleared" });
+  res.status(200).json({ message: "Cleared" });
  
 });
 

@@ -61,7 +61,14 @@ router.post("/register", async (req, res) => {
       }
 
       // kung ang email wala pa nagamit padayun ka diri
-
+      // const db_ins2 = "INSERT INTO sys_accounts (`id`, `profile_id`, `name`, `email`, `email_confirmed`, `phone`, `phone_confirmed`, `receive_updates`, `receive_news`, `password`, `salt`, `role`, `lang_id`, `added`, `changed`, `logged`, `ip`, `referred`, `login_attempts`, `locked`, `phone_number`, `facebook_profile`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      //   db.query(db_ins2, [email,hashedPaswword], (err,result) => {
+      //     if (err) {
+      //       console.error(err);
+      //       return res.status(500).send("Sayup imong pag register buang!");
+      //     }
+      //     res.status(200).send({ msg: "Registration Success.." });
+      //   })
       const db_ins =
         "INSERT INTO accounts (type,email,pass,status,credits,created) VALUES ('user',?,?,0,0,Now())";
       db.query(db_ins, [email, hashedPaswword], (err, result) => {

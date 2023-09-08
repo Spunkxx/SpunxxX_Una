@@ -44,10 +44,11 @@ router.post("/LoginAuth",async (req, res) => {
           maxAge: 3 * 60 * 60 * 1000,
         });
 
-        console.log("Cookie:", token);
+        // console.log("Cookie:", token);
 
         res.status(200).json({ message: "Login successful" });
-        return console.log("Success");
+        console.log("Success");
+        return
       } else {
         return res.status(401).json({ message: "Invalid credentials" });
       }
