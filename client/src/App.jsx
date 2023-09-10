@@ -6,6 +6,7 @@ import Offers from './components/Pages/SectionPages/Offers';
 import Signup from './components/Auths/Signup';
 // import Home from './components/Pages/Home';
 import { Toaster } from 'react-hot-toast';
+
 import Hero from './components/Pages/SectionPages/Hero';
 
 
@@ -15,8 +16,10 @@ function App() {
       <>
       <Toaster position='bottom-center'/>
       <Routes>
+
         <Route path="/" element={<Hero />} />
         {/* <Route path="/" element={<Home />} /> */}
+  
         <Route path="/signup" element={<Signup/>}/>
         {/* <Route path="/register" element={<Register />} /> */}
         <Route path="/login" element={<Login />} />
